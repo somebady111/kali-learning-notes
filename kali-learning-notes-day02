@@ -1,0 +1,64 @@
+# kali linux工具大全
+
+# 局域网内部wifi攻击hping3
+hping3 -S --flood -V 目标ip地址
+
+9月20日
+# NETCAT工具使用
+1.ping工具查询pop3的IP
+命令：ping pop3.163.com # 链接pop3的163邮箱
+2.连接服务器和客户端
+命令：nc -vn IP 110 # pop3服务器端的端口为110
+3.连接服务器后
+进行base64编码：命令，base64 --> 输入邮箱 --> ctrl+D
+解析完毕后，在服务器输入：USER 解析邮箱 
+同理：PASSWORD 解析密码 
+打印出：-ERR Unable to log on  （登录成功）
+4.smtp 163邮箱连接
+ping smtp.163.com
+不同的是：smtp 运行在25端口下
+进入163的smtp服务器后输入：ehlo 用户名，提示出命令
+无须再使用base64加密
+5.nc传输文本信息
+由一方开放一个端口：
+A:nc -i -p port
+查看端口状态：netstat -pantu | grep port 
+如果处于listen状态，表示该端口处于打开状态
+B:nc -nv A的IP A监听的port
+作用：审计(收集电子取证信息)
+A端监听:nc -l -p 7700
+B端通过管道，发送取证的文件:ls -l | nc -nv A端IP A端监听PORT
+# 计入文本（审计）
+1.将进程信息通过nc传回目标机器:
+A(目标机器):nc -l -p port > name.txt
+B(取证端):ps aux | nc -nv A的IP A的port -q 1 # 传输后关闭
+B（将全部取证到目标机器）：lsof | nc -nv A的IP A的PORT -q 1
+# nc的文件、文件夹、加密文件传输
+A(发送端):nc -nv | B的IP B监听的端口 < name.mp4 -q 1 # 1表示，1秒后断开连接
+B（接收端）：nc -lp port > name.mp4
+# 情况二
+A(下载端):nc -nv | B的IP B监听的端口 > name.mp4 -q 1 # 1表示，1秒后断开连接
+B（发送端，或者是提供下载端）：nc -lp port < name.mp4
+# 传递目录
+1.打包传送
+A:tar -cvf - 目录名/ | nc -lp port -q 1
+B:nc -nv A的IP A监听的PORT | tar -xvf - 
+2.加密传送
+A:nc -lp port | mcrypt --flush -Fbqd -a rijndael-256 -m ecb > 文件名
+B:mcrypt --flush -Fbq -a rijndael-256 -m ecb < 文件名 | nc-nv A的IP A监听的端口 -q 1
+# mcrypt加密包下载：apt-get install mcrypt
+
+# 流媒体服务器
+A：cat 文件名 | nc -lp port
+B: nc -nv IP PORT | mplayer -vo xll -cache 3000 - 
+
+# 端口扫描
+1.nc -nvz IP 1-65535  # tcp
+2.nc -vnzu IP 1-65535  # udp
+
+# nc远程硬盘克隆
+A:nc -lp PORT | dd of=/dev/sda
+B:dd if=/dev/sda | nc -nv IP PORT -q 1
+（被标记删除的磁盘内容，但磁盘内依旧存在，nc会完全的将磁盘内容拷贝到另一个盘里，而不会忽略标记内容，1.先克隆内存信息，2.再拷贝硬盘信息）
+
+
