@@ -1,0 +1,34 @@
+# 内容1：常见协议
+IP协议分为三层：上层字段为1——ICMP  上层字段为2——IGMP  上层字段为6——TCP  上层字段为17——UDP 
+IP头校验——是由两位进行异或运算的值
+传输一个数据包——由原包流，目标地址包流，流的索引（分包发送），序列号
+
+# 内容2：大型抓包工具
+riverbed 官网
+
+# 内容3：TCP-DUMP（字符化界面抓包工具）
+1.默认只抓取68个字节
+2.tcpdump -i eth0 -s 0 -w file.pcap # --s 0 表示抓取任意大小的包
+3.Tcpdump -i eth0 part 22
+4.读取抓包软件：Tcpdump -r file.pcap
+5.显示具体内容：Tcpdump -A -r file.pcap # 一ascii码的方式显示内容
+-x 十六进制显示
+
+# 抓包筛选器
+1.tcpdump -i eth0 tcp port 80
+# 显示筛选器
+1.tcpdump -n -r http.cap | awk '{print $3}' | sort -u # -n不对域名进行解析 $3筛选第三列的内容 解析包http.cap sort -u去除重复项
+2.只显示源IP的地址信息：tcpdump -n src host IP -r http.cap
+3.只显示目标IP的地址信息：tcpdump -n dst host IP -r http.cap
+4.按照端口号进行显示:tcpdump -n port xx -r http.cap
+5.规范化显示：tcpdump -n -X port xx -r http.cop
+6.高级筛选：tcpdump -A -n 'tcp[13]=24' -r http.cap
+
+# 过程文档记录工具
+1.Dradis  # 共享文本
+2.Keepnote # 文本记录
+3.Truecrypt # 加密工具
+
+# nmap工具初使用
+1.扫描一个IP地址并导出到xml文件：nmap -p IP -oX file.xml
+
