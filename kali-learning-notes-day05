@@ -1,0 +1,56 @@
+Day05
+
+# DNS信息收集——DIG
+
+a.dig 域名 any @请求的解析服务器IP
+
+b.SOA记录，起始域名解析
+
+c.指定输出记录：no参数系列
+1.dig +noall +answer sina.com any @请求的解析服务器IP | awk '{print $n}'
+
+d.反向解析
+1.dig 163.com mx ————>查询出相关域名————>反响解析出IP
+2.dig 相关域名————>IP
+3.反向查询：dig -x IP————>ptr的域名信息
+
+e：查询bind版本信息,查询出bind版本--检测漏洞--查询出dns里的所有注册域名,此信息一般是隐藏的
+1.dig +noall +answer txt chaos VERSION.BIND @dns解析域名————>去bind官网查看地址信息查看修复的漏洞，根据漏洞进行攻破
+
+f:dns追踪：跳过本地dns查询，直接请求根域名
+1.dig -trace 域名
+
+g:dns区域传输:dns之间的信息传递
+1.dig 目标域名 ns————>NS
+2.dig @目标域名服务器(NS) 目标域 axfr # axfr差异化记录传输
+3.使用host命令进行区域传输:host -T -l 目标域 ns域名服务器名称 # 这里的-l即axfr  -T使用TCP的传输方式
+
+h:DNS字典爆破
+#推荐字典命令
+1.fierce -dnsserver 8.8.8.8 -dns sina.com.cn -wordlist a.txt  # 这里的a.txt一定要在所在字典文件夹下
+2.dnsdict6 -d4 -t 16 -x sina.com # -t指并发线程数 -x字典级别  用不了
+3.dnsenum -f dnsbig.txt -dnsserver 8.8.8.8 sina.com -o sina.xml
+4.dnsmap sina.com -w dns.txt  
+5.dnsrecon -d sina.com --lifetime 10 -t brt -D dnsbig.txt # -t查询强度
+6.dnsrecon -t std -d sina.com
+# 查找命令相关包
+1.dpkg -L 命令————>hosts.txt
+
+i:查询DNS注册信息
+#whois查询
+1.whois 域名
+2.whois IP
+
+j: 搜索引擎
+#base
+1.banner:http,ssh,telet,ftp
+2.https://www.shodan.io/
+#filter
+1.net:IP
+2.contry
+3.city
+4.port
+5.os
+6.hostname
+7.server
+8.user: admin pass: password
