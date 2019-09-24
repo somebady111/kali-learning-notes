@@ -1,0 +1,28 @@
+content:6章节-任务20:shodan帐号特性
+
+a.virtualbox和network
+# 修改网卡信息
+1.nano /etc/network/interfaces ————>设置网卡信息iface eth0 inet dhcp
+
+b.帐号特性
+1.注册后的帐号会生成一个shodan的API接口，通过脚本来调用接口
+2.explore搜索帮助信息
+
+c.google搜索引擎使用
+1.需要翻墙...
+#搜索过滤
+1.关键字过滤：+关键字 -关键字
+2."搜索的完整语句" #搜索完整语句信息
+3.intitle:content index:content
+4.google hacking
+
+d.https://yandex.com/ -英国
+
+e.命令行式搜索
+# 并发式搜索
+1.theharverster -d 域名 -l 300 -b 搜索引擎  # 邮件、主机
+2.metagoofil -d 域名 -t pdf -l 200 -o test -f name.html  # 文件
+3.tmux复式终端窗口
+4.命令行使用代理:proxychains 1/2
+
+f.maltego
