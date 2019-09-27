@@ -40,3 +40,26 @@ apt 安装包管理:1.更新：apt update 2.下载：apt full-upgrade
 #虚拟机快照
 1.在VM下，snapshot->take snapshot
 2.回复快照：snapshot->revert to snapshot
+
+# 网络配置
+1.在虚拟机网络无连接的情况下(这时候ifconfig的配置只有localhost)
+2.先指定一个IP地址:ifconfig 指定的网卡 IP/24 # 24 掩码
+3.查看现在的IP:ifconfig 网卡
+4.上网：指定网关(getway),route add default gw 192.168.1.1————>SIOCADDRT: Network is unreachable
+5.查看设置是否生效：netstat -nr   或者     route -n
+6.如果网络处于三层交换机的情况下，交换机下又分有多个网段（多IP地址），需要为网络添加多个静态地址:route add -net 当前有效的网络IP/24 gw 192.168.1.1 指定网卡   # 主机的掩码的32
+7.更改域名配置:nano /etc/resolv.conf
+以上现在的ifconfig配置都是临时生效的，重启后，这个配置就是消失
+长期生效，看以下  
+8.nano /etc/network/interfaces   # 不同版本的网卡配置地址不同
+9.检测：ping 网关  ping IP  ping 域名
+
+# TOR下载
+1.暗网网址后缀：.onion
+2.下载地址：https://www.torproject.org/download/download-easy.html.en#linux
+3.http://pan.baidu.com/s/lsjkdPO5
+4.新的下载地址:http://t-browser.sourceforge.net/
+5.安装 and 使用
+
+
+
