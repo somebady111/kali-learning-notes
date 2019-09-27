@@ -24,5 +24,17 @@ e.命令行式搜索
 2.metagoofil -d 域名 -t pdf -l 200 -o test -f name.html  # 文件
 3.tmux复式终端窗口
 4.命令行使用代理:proxychains 1/2
+5.
 
-f.maltego
+f.其他途径
+1.不同时期网站版本记录:waypage
+2.构建个人专属的密码字典:cupp.py -i
+
+g.recon-ng:全特性的web侦察框架。
+1.启动：recon-ng   recon-ng -h
+2.框架内命令：help提示查看。参数keys可以调用shodan的登录key来使用shodan搜索
+# 使用
+1.recon-ng -w 域名 # 搜索该域名在网页上的信息
+2.workspaces 参数 # 查看工作区 workspaces list   # 添加keys： keys add shodan_api value  # show 查看参数
+# DNS查询
+1.
