@@ -53,6 +53,7 @@ apt 安装包管理:1.更新：apt update 2.下载：apt full-upgrade
 长期生效，看以下  
 8.nano /etc/network/interfaces   # 不同版本的网卡配置地址不同
 9.检测：ping 网关  ping IP  ping 域名
+10.重新获取IP地址：dhclient eth0
 
 # TOR下载
 1.暗网网址后缀：.onion
