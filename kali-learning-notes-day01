@@ -62,5 +62,12 @@ apt 安装包管理:1.更新：apt update 2.下载：apt full-upgrade
 4.新的下载地址:http://t-browser.sourceforge.net/
 5.安装 and 使用
 
+# 查看kali版本信息
+1.uname -a
+2.lsb_release -a
+
+# 修改更新原
+1.nano /etc/apt/sources.list
+2.apt-get update && apt-get dist-upgrade -y
 
 

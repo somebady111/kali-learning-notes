@@ -1,4 +1,4 @@
-# day08 19-9-30 7节 任务31
+# day08 19-9-30 7节 任务31 任务32 任务33 任务34
 
 a.服务器扫描
 # 特点:1.识别端口运行应用  2.识别操作系统
@@ -31,6 +31,10 @@ a.服务器扫描
 2.snmpcheck -t IP private -v 2
 3.snmpcheck -t IP -w
 
-
+b.SMB扫描
+1.nmap -v -p139,145 IP --open
+2.nmap IP -p139,145 --script=smb-os-discovery.nse
+3.nbtscan -r IP/24  # -r使用本地端口137扫描 优点：可以在不同网段下进行扫描
+4.enum4linux -a IP	
 
 
