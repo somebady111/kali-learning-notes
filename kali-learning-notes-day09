@@ -1,0 +1,62 @@
+# day09 第八章：弱点扫描 任务：35
+
+a.漏洞查找
+# 方式一：https://www.exploit-db.com/
+# 方式二：kali-command
+1.kali->searchsploit 漏洞名称
+2.目录地址：/usr/share/exploitdb/shellcodes
+3.查看漏洞文件：根据查找文件目录进行cat查看
+
+b.弱点扫描器：简便漏洞查找操作
+# 企业应用
+1.信息收集 2.信息管理 3.信息输出
+# 漏洞的扫描类型
+1.主动扫描（黑盒探测） 2.被动扫描（抓包） 3.基于agent的扫描
+# 基础概念
+1.CVSS：通用漏洞评分系统 
+2.basic metric； temporal metric； enviromental metric； 
+3.CVE：漏洞编号 
+4.OVAL：漏洞检测方法的机器描述语言 
+5.CCE：描述软件配置缺陷的标准化格式
+6.CPE：信息技术产品，系统，软件包的结构化命名规范，分类命名
+7.CWE：常见的漏洞类型字典，描述不同漏洞的特征
+8.SCAP：集合了多种安全标准框架
+9.漏洞管理的三大准则：准确性 时间 资源
+
+c.NMAP
+# 查看namp脚本
+1.cd /usr/share/nmap/scripts/
+2.ls
+3.cat script.db # nmap脚本名称目录  less script.db(逐条显示)
+4.less script.db | wc -l # 统计
+5.less script.db | grep vuln | wc -l 
+# 使用nmmap启动脚本查询漏洞
+1.smb-vuln-ms10-061.nse #stuxnet漏洞利用脚本
+# 脚本使用
+1.扫描连接网络的存活主机开放端口：nmap IP/24 -nr
+2.启动脚本，寻找漏洞：nmap -p445 --script=smb-enum-shares.nse --script-args=subuser=admin,subpassword=pass IP # nmap -p445 --script=smb-enum-shares.nse IP
+
+d.OPENVAS
+# backgroud
+1.nessus分支项目
+2.apt-get install openvas
+3.配置和启动：openvas-setup  # 初始化，feed更新
+4.openvas-check-setup
+# 组成
+1.manager
+2.scanner # 具体执行
+3.greenbone # web服务接口
+# 安装
+1.openvasmd --get-users # 查询当前用户
+2.openvasmd --user=admin --new-passsword=password # 修改账户密码
+3.openvas-feed-update  # 升级
+# 使用
+1.扫描配置：configuration->scan configs
+2.添加新配置
+3.选择扫描目标：targets 
+4.选择任务开始周期
+4.选择新的任务：task
+
+e.
+
+f.
