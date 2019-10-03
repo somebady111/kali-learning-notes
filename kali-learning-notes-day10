@@ -1,0 +1,27 @@
+2019年10月02日 星期三 16时58分07秒 
+# 第八节 任务37 nessus扫描工具使用
+# 任务38 nexpose扫描工具使用
+# 第九节 任务39 缓冲区溢出
+
+a.nessus下载、安装 
+1.下载地址：https://www.tenable.com/products/nessus/nessus-professional
+2.安装:dpkg -i 文件名 # 安装deb文件的方法
+3.安装路径:/opt/nessus
+4.使用：1.基础settings设置 2.credentials 身份验证设置 3.dynamic plugins配置
+
+b.nexpose扫描工具使用(商用)
+1.这个只了解
+
+c.缓冲区溢出
+# 漏洞的根源:bash 命令
+1.更改文件权限：chmod 744 name
+2.ls -l
+3.run bash_command
+# solution
+1.源码审计
+2.逆向工程
+3.模糊测试
+# tools
+1.SLMail
+
+d.
