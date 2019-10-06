@@ -21,7 +21,18 @@ c.缓冲区溢出
 1.源码审计
 2.逆向工程
 3.模糊测试
-# tools
-1.SLMail
 
-d.
+
+d.无线网络渗透：无线网络架构
+# 架构1：infrastructure
+1.AP维护SSID #AP无线路由器 SSID开放的路由热点信号名称
+2.接受到信号的原理:AP每秒钟约10次发送Beacon帧听广播SSID，接收到信号返回给侦听端
+3.客户端连接到无线网络后也会对外宣告SSID
+4.至少含有一个AP和一个STATION，形成一个Basic Service Set（BSS）
+5.AP连接到有线网络，称为Distribution System（DS）
+6.连接到同一个DS的多个AP形成一个Extended Service Set（ESS）
+
+# Ad-HOC：Independent Basic Service Set（IBSS）
+1.STA维护SSID
+2.至少2个STAS直接通信组成，一个sta负责AP工作，通过beacon广播SSID，对其他stas进行身份验证
+
