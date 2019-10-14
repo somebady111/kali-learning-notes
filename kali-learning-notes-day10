@@ -2,6 +2,7 @@
 # 第八节 任务37 nessus扫描工具使用
 # 任务38 nexpose扫描工具使用
 # 第九节 任务39 缓冲区溢出
+# 第十节 任务44 提权
 
 a.nessus下载、安装 
 1.下载地址：https://www.tenable.com/products/nessus/nessus-professional
@@ -17,11 +18,10 @@ c.缓冲区溢出
 1.更改文件权限：chmod 744 name
 2.ls -l
 3.run bash_command
-# solution
+# solution：方案
 1.源码审计
-2.逆向工程
+2.逆向工程：反汇编ollydbg、python的反汇编模块
 3.模糊测试
-
 
 d.无线网络渗透：无线网络架构
 # 架构1：infrastructure
@@ -36,3 +36,39 @@ d.无线网络渗透：无线网络架构
 1.STA维护SSID
 2.至少2个STAS直接通信组成，一个sta负责AP工作，通过beacon广播SSID，对其他stas进行身份验证
 
+# 提权
+# 本地提权:user->administrator
+a.windows
+1.administrator
+2.user
+3.system
+b.linux
+1.user
+2.root
+c.修改windows的帐号密码设置
+1.net user 用户名 *
+2.net user # 查看当前系统存在的帐号
+3.net user 用户名
+d.提权
+1.at /? # 查看at命令参数
+2.
+\\computername       指定远程计算机。如果省略这个参数，
+                     会计划在本地计算机上运行命令。
+id                   指定给已计划命令的识别号。
+/delete              删除某个已计划的命令。如果省略 id，
+                     计算机上所有已计划的命令都会被删除。
+/yes                 不需要进一步确认时，跟删除所有作业
+                     的命令一起使用。
+time                 指定运行命令的时间。
+/interactive         允许作业在运行时，与当时登录的用户
+                     桌面进行交互。
+/every:date[,...]    指定在每周或每月的特定日期运行命令。
+                     如果省略日期，则默认为在每月的
+                     本日运行。
+/next:date[,...]     指定在下一个指定日期(如，下周四)运
+                     行命令。如果省略日期，则默认为在每
+                     月的本日运行。
+"command"            准备运行的 Windows NT 命令或批处理
+                     程序。
+3.at time /interactive cmd # 该命令在windows10已经弃用，信用令为schtasks.exe
+4.
